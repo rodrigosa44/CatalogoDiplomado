@@ -1,0 +1,11 @@
+<div class="product-list">
+    <app-postcard *ngFor="let item of list" 
+    [producto]="item"  
+    (agregaralcarrito)="seagregoalcarrito($event)"
+    (productSelected)="goToDetail($event)"></app-postcard>
+</div>
+
+<div id="carrito">
+    <h3>Carrito de compras</h3>
+    <div></div>
+</div>

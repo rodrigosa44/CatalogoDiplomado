@@ -1,0 +1,11 @@
+<div>
+    <div *ngIf="producto">
+    <h2>Detalle del producto: {{producto.mensaje}}</h2>
+    <div class="productdetail">
+        <p>Precio: {{producto.precio}}</p>
+    </div>
+    <div class="buttondetail">
+        <button (click)="goToList()"> Volver al listado </button>
+    </div>
+    </div>
+</div>
