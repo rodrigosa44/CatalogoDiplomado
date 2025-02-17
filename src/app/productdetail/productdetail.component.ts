@@ -14,7 +14,11 @@ export class ProductdetailComponent {
 
   constructor (private router:Router, private activeroute:ActivatedRoute, private productservice:ProductServiceService){
     const id = Number(this.activeroute.snapshot.paramMap.get('id'));
-    this.productservice.getProductById(id).subscribe(producto => this.producto = producto);
+    this.productservice.getProductById(id).subscribe(apiProducto => this.producto = {
+      id: apiProducto.id,
+      mensaje: apiProducto.title,
+      precio: apiProducto.price
+    });
   }
 
   goToList(){

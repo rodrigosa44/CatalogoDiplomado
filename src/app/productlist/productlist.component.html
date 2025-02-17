@@ -7,5 +7,7 @@
 
 <div id="carrito">
     <h3>Carrito de compras</h3>
-    <div></div>
+    <ul *ngFor="let producto of (carrito)">
+        <li class="parent">{{ producto.producto.mensaje }} x {{producto.cantidad}}</li>
+      </ul>
 </div>

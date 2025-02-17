@@ -15,13 +15,31 @@ import { RouterModule, Route, Router } from '@angular/router';
 })
 export class ProductlistComponent {
   list: Producto[] = [];
-  carrito: Producto[] = [];
+  carrito: {producto: Producto, cantidad: number}[] = [];
   constructor(private productService: ProductServiceService, private router:Router){
-    productService.getProducts().subscribe(productos=>this.list=productos);
+    //this.list
+    productService.getProducts().subscribe(
+          response => {
+            this.list = response.products.map(product => {
+              return {
+                id: product.id,
+                mensaje: product.title,
+                precio: product.price
+              }
+            });
+          }
+        );
   }
   seagregoalcarrito(producto:Producto){
     alert('Se agrego al carrito el siguiente producto:  ' +producto.mensaje);
-    this.carrito.push(producto);
+    //find if the product is already in the cart and increase the quantity if not insert
+    let item = this.carrito.find(item => item.producto.id == producto.id);
+    if(item){
+      item.cantidad++;
+    }
+    else{
+      this.carrito.push({producto:producto, cantidad:1});
+    }
   }
   
   goToDetail(producto:Producto){
